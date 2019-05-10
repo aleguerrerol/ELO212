@@ -21,3 +21,20 @@ module clock_divider
         end
     end
 endmodule
+
+module simulation(
+);
+    logic clk;
+    logic reset;
+    logic out;
+    
+    MODULE_NAME SIMULATION_NAME(.CLK_NAME(clk), .RESET_NAME(reset), .OUT_NAME(out));
+        
+    always #5 clk = ~clk; //señal de clk, con timescale de 1ns es un clk de 100Mhz
+    initial begin 
+        clk=0;
+        reset=1;
+        #10 reset=0;
+    end
+    
+endmodule

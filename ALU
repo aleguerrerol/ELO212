@@ -5,7 +5,7 @@ module ALU
     output logic [in_length-1:0]result
  );
  always_comb begin
-    case (sory)
+    case (sory)                         //suma - or - resta - and -> orden de los bits
         4'b0001:    result=A&B;   
         4'b0010:    result=A-B;    
         4'b0100:    result=A|B;

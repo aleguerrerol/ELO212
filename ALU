@@ -1,0 +1,17 @@
+module ALU
+#(parameter in_length=8)
+(
+    input logic [in_length-1:0]A, [in_length-1:0]B, [3:0]sory,
+    output logic [in_length-1:0]result
+ );
+ always_comb begin
+    case (sory)
+        4'b0001:    result=A&B;   
+        4'b0010:    result=A-B;    
+        4'b0100:    result=A|B;
+        4'b1000:    result=A+B;
+        default:    result=0;       //verificar
+   endcase
+ end
+ 
+endmodule

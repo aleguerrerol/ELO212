@@ -1,0 +1,14 @@
+module top_module(
+    input CLK100MHZ, BTNC,
+    output CA,CB,CC,CD,CE,CF,CG,
+    output DP,
+    output [7:0] AN
+    );
+    logic [3:0]c;
+    logic clk;
+    clock_divider #50000000 clock_divider1 (.clk_in(CLK100MHZ), .reset(BTNC), .clk_out(clk));
+    contador contador1(.clk(clk) , .reset(BTNC) , .count(c));
+    fibbi fibbi1(.BCD_in(c) , .fib(DP));
+    bcd_to_seven_seg bcd_to_seven_seg1(.BCD_in(c), .sevenSeg({CA,CB,CC,CD,CE,CF,CG}), .AN(AN));    
+    
+endmodule

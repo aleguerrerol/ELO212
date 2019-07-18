@@ -1,5 +1,19 @@
 [Codigo Act 3.1 Exp 5 que está relacionado a la 2.2 Exp 6]
 
+module TOP_2.2(
+    input logic [7:0]SW,
+    input logic BTNC
+    output logic CA,CB,CC,CD,CE,CF,CG,
+    output logic [7:0]AN 
+    );
+    assign AN = 8'b11111110;     
+    bcd_to_seven_seg bcd_to_seven_seg2(.BCD_in(SW), .sevenSeg({CA,CB,CC,CD,CE,CF,CG}));
+endmodule
+
+
+AQUI IRIA EL 8BITS_to_BDC
+
+
 module bcd_to_seven_seg(
     input logic [3:0] BCD_in,
     output logic [6:0] sevenSeg, // estructura (a,b,c,d,e,f,g) con a el MSB
@@ -29,11 +43,4 @@ module bcd_to_seven_seg(
     end
 endmodule
 
-module TOP_31(
-    input logic [3:0]SW,
-    output logic CA,CB,CC,CD,CE,CF,CG,
-    output logic [7:0]AN 
-    );
-    assign AN = 8'b11111110;     
-    bcd_to_seven_seg bcd_to_seven_seg2(.BCD_in(SW), .sevenSeg({CA,CB,CC,CD,CE,CF,CG}));
-endmodule
+

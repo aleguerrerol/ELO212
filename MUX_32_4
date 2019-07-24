@@ -1,0 +1,51 @@
+module mux_32_4(
+    input logic [3:0]A1,A0,B1,B0,R1,R0,
+    input logic [2:0]EN, //recibe la cuenta producida por el clock para hacer el TDM
+    input logic [3:0]BTN, //recibe el input de los botones para saber si hay que sumar o restar
+    output logic [3:0]DIG,
+    output logic SE
+    );
+    always_comb begin
+      
+        case(EN)
+            3'b000: begin 
+                    SE = 1;
+                    DIG = A0;
+                    end
+            3'b001: begin
+                    SE = 1;
+                    DIG = A1;
+                    end
+            3'b010: begin
+                    SE = 0;
+                    DIG = 4'b1111;
+                    end
+            3'b011: begin 
+                    SE = 1;
+                    DIG = B0;
+                    end
+            3'b100: begin
+                    SE = 1;
+                    DIG = B1;
+                    end
+            3'b101: begin
+                    SE = 0;
+                    DIG = 4'b1111;
+                    end
+            3'b110: begin
+                    if  (BTN== 4'b1000 || BTN == 4'b0010) 
+                        SE = 1;
+                    else
+                        SE = 0; 
+                    DIG = R0;
+                    end
+            3'b111: begin
+                    if  (BTN== 4'b1000 || BTN == 4'b0010) 
+                        SE = 1;
+                    else
+                        SE = 0; 
+                    DIG = R1;
+                    end
+        endcase 
+    end      
+endmodule

@@ -1,0 +1,13 @@
+module operador(
+    input logic [7:0]A, [7:0]B, [3:0]BTN,
+    output logic [7:0]RES
+    );
+    always_comb begin
+        case(BTN)
+            4'b1000: RES = A+B; //up
+             
+            4'b0010: RES = A-B; //down
+             default: RES = 8'b11111111; 
+        endcase
+    end
+endmodule

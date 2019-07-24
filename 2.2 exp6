@@ -2,7 +2,7 @@
 
 module TOP_2.2(
     input logic [7:0]SW,
-    input logic BTNC
+    input logic BTNC,
     output logic CA,CB,CC,CD,CE,CF,CG,
     output logic [7:0]AN 
     );

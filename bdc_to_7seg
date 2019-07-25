@@ -1,7 +1,7 @@
 module bcd_to_seven_seg(
     input logic [3:0] BCD_in,
     output logic [6:0] sevenSeg, // estructura (a,b,c,d,e,f,g) con a el MSB
-    output logic [7:0] AN
+    output logic [7:0] AN       // <---- ESTÁ DE MÁS!!!
     );
     always_comb begin
         AN = 8'b11111110;

@@ -1,0 +1,34 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 25.07.2019 00:16:46
+// Design Name: 
+// Module Name: counter
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module counter(
+    input logic     clk, reset,
+    output logic    [2:0]c
+    );
+    
+    always_ff @(posedge clk) begin
+        if (reset)
+            c <= 3'b0;
+        else
+            c <= c+1;
+    end
+endmodule

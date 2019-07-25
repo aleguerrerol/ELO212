@@ -22,7 +22,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module reg_to_tdm_sim(); //esto va vacío
+module reg_to_tdm_sim(); //esto va vacÃ­o
     logic [15:0]BR1;
     logic [15:0]BR2;
     logic [15:0]BR3;

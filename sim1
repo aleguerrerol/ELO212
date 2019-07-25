@@ -31,3 +31,23 @@ module tdm(
     EN=3'b111;
     end
 endmodule
+
+--------------------------------------------------------------------
+
+module sim_clk(
+
+    );
+    
+  logic [2:0] count;
+  logic reset; 
+  logic clk_in;
+  //clock_divider #104166 DUT3(.clk_in(clk_in),.reset(reset),.clk_out(clk_out));
+  contador_3bits DUT4(.clk(clk_in),.reset(reset),.count(count));
+  always #2083333 clk_in=~clk_in; 
+  initial begin
+  clk_in=0;
+  reset=1;
+  #2183333
+  reset=0;
+  end
+endmodule

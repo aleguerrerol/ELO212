@@ -1,10 +1,10 @@
 module bcd_to_seven_seg(
     input logic [3:0] BCD_in,
     output logic [6:0] sevenSeg, // estructura (a,b,c,d,e,f,g) con a el MSB
-    output logic [7:0] AN       // <---- ESTÁ DE MÁS!!!
+    output logic [7:0] AN       
     );
     always_comb begin
-        AN = 8'b11111110;
+        AN = 8'b11111110;                                               //XQ SE NECESITA ESTE CASO AQUÍ????
         case(BCD_in) //Notar que los leds del display son active low.
             4'd0:   sevenSeg =  7'b0000001; //si el input (BCD_IN) son 4 bits, que son 0 en decimal (0000 en binario), 7seg pasa a valer abcdef, lo que representa 0
             4'd1:   sevenSeg =  7'b1001111; //1

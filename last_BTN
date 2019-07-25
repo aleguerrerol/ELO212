@@ -1,0 +1,18 @@
+module last_BTN(
+    input logic BTNL, BTNU, BTNR, BTNC,
+    output logic [1:0]btn 
+);
+    logic salida='b0;// la confirguración en 0 es la que muestra valores de A y B en los displays
+    logic counter=0;// variable creada para mantener el estado de BTNC aun cuando no esté apretado
+    
+    always_comb begin
+        if(BTNC)// BTNC en 1
+            counter=1;
+            salida='b1;// la configuración en 1 es la que muestra el resultado de la opercación
+        if (counter==1)
+            salida='b1;
+            if (BTNU) // BTNU en 1
+                salida='b0;// se muestran A y B mientras BTNU esté apretado
+    end 
+    assign btn=salida;           
+endmodule

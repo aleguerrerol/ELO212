@@ -1,0 +1,67 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 24.07.2019 19:12:40
+// Design Name: 
+// Module Name: Mux_32_4
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module Mux_32_4 #(parameter D7=1,D6=1,D5=1,D4=1,D3=1,D2=1,D1=1,D0=1)
+(
+    input logic [3:0]data_7,data_6,data_5,data_4,data_3,data_2,data_1,data_0,       //números para cada disp
+    input logic [2:0]EN, //recibe la cuenta producida por el clock para hacer el TDM (desde el display 0 al 7)
+    
+    output logic [3:0]DIG      //número a representar
+    );
+    always_comb begin
+      
+        case(EN)
+            3'b000: begin 
+                   if (D0) DIG <= data_0;
+                    else DIG<='b0;
+                    end
+            3'b001: begin
+                    if (D1) DIG <= data_1;
+                    else DIG<='b0;
+                    end
+            3'b010: begin
+                    if (D2) DIG <= data_2;
+                    else DIG<='b0;
+                    end
+            3'b011: begin 
+                    if (D3) DIG <= data_3;
+                    else DIG<='b0;
+                    end
+            3'b100: begin
+                    if (D4) DIG <= data_4;
+                    else DIG<='b0;
+                    end
+            3'b101: begin
+                    if (D5) DIG <= data_5;
+                    else DIG<='b0;
+                    end
+            3'b110: begin
+                    if (D6) DIG <= data_6;
+                    else DIG<='b0;
+                    end
+            3'b111: begin 
+                    if (D7) DIG <= data_7;
+                    else DIG<='b0;
+                    end
+        endcase 
+    end      
+endmodule

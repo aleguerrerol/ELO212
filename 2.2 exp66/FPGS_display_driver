@@ -1,0 +1,49 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 25.07.2019 00:12:39
+// Design Name: 
+// Module Name: FPGS_display_driver
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module FPGS_display_driver(
+    input logic CLK,
+    input logic reset,
+    input logic [3:0]D_7,D_6,D_5,D_4,D_3,D_2,D_1,D_0,
+    
+    output logic CA,CB,CC,CD,CE,CF,CG,
+    output logic [7:0]AN
+    );
+    logic [2:0]cnt;
+    logic [3:0]dato;
+    logic clock;
+    clk_divider #(104167)(.clk_in(CLK),.reset(reset),.clk_out(clock));      //frecuencia de refresh ~480Hz
+    counter(.clk(clock),.reset(reset),.c(cnt));
+    Mux_32_4(.data_7(D_7),
+                .data_6(D_6),
+                .data_5(D_5),
+                .data_4(D_4),
+                .data_3(D_3),
+                .data_2(D_2),
+                .data_1(D_1),
+                .data_0(D_0),
+                .EN(cnt),
+                .DIG(dato));
+    four_bit_bin_to_hex(.bin_in(dato),.sevenSeg({CA,CB,CC,CD,CE,CF,CG}));
+    lut(.counter(cnt),.anodos(AN));
+    
+endmodule

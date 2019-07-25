@@ -1,0 +1,33 @@
+module tdm(
+
+    );
+    logic [7:0]Y;
+    logic [3:0]A1,A0,B1,B0,R1,R0;
+    logic [2:0]EN;
+    logic [3:0]DIG;
+    mux_32_4 DUT(.A1(A1),.A0(A0),.B1(B1),.B0(B0),.R1(R1),.R0(R0),.EN(EN),.DIG(DIG));
+    desplazador DUT1(.a(EN),.Y(Y));
+    initial begin
+    EN=3'b000;
+    A1=0011;
+    A0=0000;
+    B1=0010;
+    B0=0100;
+    R1=0011;
+    R0=0001;
+    #2083333 
+    EN=3'b001;
+    #2083333
+    EN=3'b010;
+    #2083333
+    EN=3'b011;
+    #2083333
+    EN=3'b100;
+    #2083333
+    EN=3'b101;
+    #2083333
+    EN=3'b110;
+    #2083333
+    EN=3'b111;
+    end
+endmodule

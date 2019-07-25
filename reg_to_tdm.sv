@@ -15,7 +15,9 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: en la experiencia 6 esto se utiliza para mandar al TDM lo que quieremos que se muestre en
+// la pantalla. es decir: si apretamos ciertos botones, se muestra el contenido de los registros 1 y 2. si se aprietan otros
+// se muestra el contenido del registro 3.
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

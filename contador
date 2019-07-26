@@ -1,4 +1,4 @@
-module contador(
+module contador(                    //RESET SINCRÓNICO!!
     input logic     clk, reset,
     output logic    [3:0] count
     );

@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments: Del profe, adaptado para ser un banco de registros de n bits en lugar de 8
+// Additional Comments: Del profe, adaptado para ser un banco de registros de n bits en lugar de 8 y resetee con active low
 // Sacado de https://github.com/gcarvajalb/ELO212-reference-modules/blob/master/PushButton-debouncer/project_1.srcs/sources_1/new/debouncer_FSM.sv
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -30,7 +30,7 @@ module register_synch_reset_load_nbit
     output reg[n-1:0] Q
     );
     always @(posedge clk) begin
-        if (rst) begin
+        if (!rst) begin //reset de active low para que funcione con el CPU_RESETN
             Q <= 'd0;
         end
         else if (load) begin

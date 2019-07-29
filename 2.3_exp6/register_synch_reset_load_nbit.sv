@@ -30,7 +30,7 @@ module register_synch_reset_load_nbit
     output reg[n-1:0] Q
     );
     always @(posedge clk) begin
-        if (rst) begin
+        if (!rst) begin
             Q <= 'd0;
         end
         else if (load) begin

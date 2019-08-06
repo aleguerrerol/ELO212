@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../intento_fsm.srcs/sources_1/new/debouncer_2.sv" \
+"../../../../../exp_6/exp_6.srcs/sources_1/new/debouncer_count.sv" \
+"../../../../intento_fsm.srcs/sources_1/new/fsm.sv" \
+"../../../../intento_fsm.srcs/sources_1/new/top_module.sv" \
+"../../../../intento_fsm.srcs/sim_1/new/test_fsm.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

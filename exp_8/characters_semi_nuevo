@@ -173,6 +173,14 @@ module characters(
 			8'd120: vec_char=vect_char_x;
 			8'd121: vec_char=vect_char_y;
 			8'd122: vec_char=vect_char_z;
+			8'd80 : vec_char=vect_char_P;
+			8'd81 : vec_char=vect_char_Q;
+			8'd88 : vec_char=vect_char_X;
+			8'd67 : vec_char=vect_char_C;
+			8'd69 : vec_char=vect_char_E;
+			8'd76 : vec_char=vect_char_L;
+			8'd82 : vec_char=vect_char_R;
+			8'd79 : vec_char=vect_char_O;
 			8'd164: vec_char=vect_char_nn;//??
 			default:vec_char=vect_num_p;//punto
 	endcase

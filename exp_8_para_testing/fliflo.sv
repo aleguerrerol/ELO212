@@ -31,7 +31,7 @@ module fliflo(
     assign OP = D[2:0];
     always_ff @(posedge clk, posedge rst) begin
         if (rst) begin
-            Q='b0;
+            Q<='b0;
         end
         else if (en) begin
             Q<=OP;

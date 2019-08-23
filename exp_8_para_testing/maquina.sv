@@ -30,10 +30,9 @@ module maquina(
     logic restriccion; //se pone en 1 y la maquina no permite usarla
     enum logic [4:0] {op10,send10,op11,send11,op12,send12,op13,send13,wait1,op20,send20,op21,send21,op22,
                         send22,op23,send23,wait2,operation,casi,show_result} state, next_state;
-    logic reset;
-    
+
     always_ff @(posedge clk, posedge rst) begin
-        if (reset || rst) begin
+        if (rst) begin
             state<=op10;
             //estado<='d0;
         end
@@ -257,7 +256,6 @@ module maquina(
                     end
             
             show_result:    begin
-                                reset = 1;
                                 trigger_1='b0;
                                 trigger_2='b0;
                                 trigger_op='b1;
@@ -268,7 +266,7 @@ module maquina(
                                 else next_state=state;    
                             end
             default: begin
-                                reset = 0;
+                             
                                 trigger_1='b0;
                                 trigger_2='b0;
                                 trigger_op='b0;

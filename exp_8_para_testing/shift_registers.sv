@@ -41,7 +41,7 @@ module shift_registers(
             q4<='b0;
         end
         else if (bttn) begin
-            d1<=AUX;     q1<=d1;
+            d1<=AUX;        q1<=d1;
             d2<=q1;         q2<=d2;
             d3<=q2;         q3<=d3;
             d4<=q3;         q4<=d4;

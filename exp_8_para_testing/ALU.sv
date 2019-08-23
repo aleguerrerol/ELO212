@@ -22,17 +22,15 @@
 // alu nombre_(.A(),.B(),.OP(),.estado(),.result(),.error());
 
 module ALU #(parameter largo=16)(   
-    input logic [largo-1:0]A, [largo-1:0]B, [4:0]OP,      //OP 4 BITS
+    input logic [largo-1:0]A, [largo-1:0]B, [2:0]OP,      //OP 4 BITS
     //input logic estado,
     
     output logic [largo-1:0]result, //tiene 1 bit adicional para detección de errores
     output logic error                     //indica CARRY OUT
  );
-  logic [3:0]OPERATION;
-  assign OPERATION[3:0]=OP[3:0];
   
  always_comb begin        
-    case (OPERATION)
+    case (OP)
             'd0:    result= A + B;                
             'd1:    result= A * B;
             'd2:    result= A && B;

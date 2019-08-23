@@ -1,0 +1,445 @@
+/*0*/
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*0 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET)) 
+                    ch_00(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("0"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+    /*1*/		      
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET)) 
+                    ch_01(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("1"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*2*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*2 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET)) 
+                    ch_02(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("2"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+    /*3*/                     
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*3 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET)) 
+                    ch_03(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("3"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*4*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*0 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*2 + GRID_Y_OFFSET)) 
+                    ch_04(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("4"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+    /*5*/                      
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y +100*2 + GRID_Y_OFFSET)) 
+                    ch_05(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("5"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*6*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*2 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*2 + GRID_Y_OFFSET)) 
+                    ch_06(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("6"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*7*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*3 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*2 + GRID_Y_OFFSET)) 
+                    ch_07(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("7"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*8*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*0 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*1 + GRID_Y_OFFSET)) 
+                    ch_08(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("8"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*9*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*1 + GRID_Y_OFFSET)) 
+                    ch_09(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("9"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*A*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*2 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*1 + GRID_Y_OFFSET)) 
+                    ch_A(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("A"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*B*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*3 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*1 + GRID_Y_OFFSET)) 
+                    ch_B(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("B"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+    /*C*/                      
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*0 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET)) 
+                    ch_C(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("C"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*D*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET)) 
+                    ch_D(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("D"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*E*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*2 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET)) 
+                    ch_E(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("E"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+    /*F*/                      
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*3 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET)) 
+                    ch_F(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("F"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*mult*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET)) 
+                    ch_mult(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("*"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*sum*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*1 + GRID_Y_OFFSET)) 
+                    ch_sum(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("+"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+    /*and*/                      
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*2 + GRID_Y_OFFSET)) 
+                    ch_and(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("&"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*resta*/
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*1 + GRID_Y_OFFSET)) 
+                    ch_rest(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("-"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+	/*or*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*2 + GRID_Y_OFFSET)) 
+                    ch_or(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("|"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+                          
+    /*/*/	  
+	show_one_char #(.CHAR_X_LOC(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET), 
+					.CHAR_Y_LOC(FIRST_SQRT_Y + 100*2 + GRID_Y_OFFSET)) 
+                    ch_slash(.clk(clk_vga), 
+                          .rst(rst), 
+                          .hc_visible(hc_visible), 
+                          .vc_visible(vc_visible), 
+                          .the_char("/"), 
+                          .in_square(generic_bg[0]), 
+                          .in_character(generic_fg[0]));
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////		  
+	/*EXE*/
+	show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_exe(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+	/*CLR*/	
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_CLR(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*CE*/                       
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_CE(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*OP1*/                       
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_OP1(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+     /*espacio OP1*/                       
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_espacio_OP1(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*OP2*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_OP2(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+     /*espacio OP2*/                       
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_espacio_OP2(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*OP*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_OP(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*espacio OP*/                       
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_espacio_OP(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*result 1*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_result_1(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*result 2*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_result_2(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*result 3*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_result_3(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*result 4*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_result_4(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+     /*Hex*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_hex(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+     /*Dec*/                        
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_dec(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));     
+    /*Pantalla*/                       
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_pantalla(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1]));
+    /*ELO212*/                         
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
+					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*3 + GRID_Y_OFFSET + 10), 
+					.MAX_CHARACTER_LINE(3), 
+					.ancho_pixel(5), 
+					.n(3)) 
+                    line_ELO212(	.clk(clk_vga), 
+                            .rst(rst), 
+                            .hc_visible(hc_visible), 
+                            .vc_visible(vc_visible), 
+                            .the_line("abc"), 
+                            .in_square(generic_bg[1]), 
+                            .in_character(generic_fg[1])); 

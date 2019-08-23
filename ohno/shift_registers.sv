@@ -25,7 +25,8 @@ module shift_registers(
     input logic clk, rst, bttn,
     input logic [4:0]bit_in,
     
-    output logic [15:0]dato
+    output logic [15:0]datoo
+    //output logic [3:0]q1,[3:0]q2,[3:0]q3,[3:0]q4
     );
     logic [3:0]AUX;
     assign AUX[3:0] = bit_in[3:0];
@@ -33,7 +34,16 @@ module shift_registers(
     logic [3:0]d1;  logic [3:0]d2;  logic [3:0]d3;  logic [3:0]d4;
     logic [3:0]q1;  logic [3:0]q2;  logic [3:0]q3;  logic [3:0]q4;
     
-    always_ff @(posedge clk) begin
+    logic [3:0]d1_next; logic d2_next; logic [3:0]d3_next; logic [3:0]d4_next;
+    
+    always_comb begin
+        d1_next=AUX;
+        d2_next=q1;
+        d3_next=q2;
+        d4_next=q3;
+    end
+    
+    always_ff @(posedge clk, posedge rst) begin
         if (rst) begin
             q1<='b0;
             q2<='b0;
@@ -41,16 +51,18 @@ module shift_registers(
             q4<='b0;
         end
         else if (bttn) begin
-            d1<=AUX;     q1<=d1;
-            d2<=q1;         q2<=d2;
-            d3<=q2;         q3<=d3;
-            d4<=q3;         q4<=d4;
+            q1<=d1_next;
+            q2<=d2_next;
+            q3<=d3_next;
+            q4<=d4_next;
         end
     end
     
-    assign dato[15:12]=q4;
+    /*assign dato[15:12]=q4;
     assign dato[11:8]=q3;
     assign dato[7:4]=q2;
     assign dato[3:0]=q1;
+    */
     
 endmodule
+

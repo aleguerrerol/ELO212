@@ -693,14 +693,14 @@ module calculator_screen(
      /*Hex*/                        
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*0 + GRID_X_OFFSET -75), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -225), 
-					.MAX_CHARACTER_LINE(3), 
+					.MAX_CHARACTER_LINE(6), 
 					.ancho_pixel(5), 
 					.n(3)) 
                     line_hex(	.clk(clk_vga), 
                             .rst(rst), 
                             .hc_visible(hc_visible), 
                             .vc_visible(vc_visible), 
-                            .the_line("Hex"), 
+                            .the_line("0000"), 
                             .in_square(generic_bg[35]), 
                             .in_character(generic_fg[35]));
      /*Dec*/                        
@@ -716,7 +716,14 @@ module calculator_screen(
                             .the_line("Dec"), 
                             .in_square(generic_bg[36]), 
                             .in_character(generic_fg[36]));     
-    /*Pantalla*/                       
+    /*Pantalla*/                
+    logic [7:0]ascii_conv_0_P, ascii_conv_1_P, ascii_conv_2_P, ascii_conv_3_P;
+    logic [15:0] canal_pantalla;
+    hex_to_ascii hex_to_p_0 (.hex_num(canal_pantalla[3:0]), .ascii_conv(ascii_conv_0_P));
+    hex_to_ascii hex_to_p_1 (.hex_num(canal_pantalla[7:4]), .ascii_conv(ascii_conv_1_P)); 
+    hex_to_ascii hex_to_p_2(.hex_num(canal_pantalla[11:5]), .ascii_conv(ascii_conv_2_P)); 
+    hex_to_ascii hex_to_p_3(.hex_num(canal_pantalla[15:12]), .ascii_conv(ascii_conv_3_P));  
+           
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET - 25), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -200), 
 					.MAX_CHARACTER_LINE(5), 
@@ -726,10 +733,10 @@ module calculator_screen(
                             .rst(rst), 
                             .hc_visible(hc_visible), 
                             .vc_visible(vc_visible), 
-                            .the_line(), 
+                            .the_line({ascii_conv_3_P,ascii_conv_2_P,ascii_conv_1_P, ascii_conv_0_P}), 
                             .in_square(generic_bg[37]), 
                             .in_character(generic_fg[37]));
-    /*ELO212*/                         
+    /*ELO212*/                   //canal pantalla -> hex to ascii -> show one line      
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET - 25), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*4 + GRID_Y_OFFSET + 10), 
 					.MAX_CHARACTER_LINE(6), 

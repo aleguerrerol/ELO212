@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// fliflo nombre_(.clk(),.rst(),.en(),.D(),.Q());
+// fliflo nombre_(.clk(),.rst(),.en(),.D(),.Q(),.reset());
 
 module fliflo(
     input logic clk, rst, en,
@@ -30,7 +30,7 @@ module fliflo(
     logic [2:0] OP;
     assign OP = D[2:0];
     always_ff @(posedge clk, posedge rst) begin
-        if (rst) begin
+        if (rst || reset) begin
             Q<='b0;
         end
         else if (en) begin

@@ -19,10 +19,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// fliflo nombre_(.clk(),.rst(),.en(),.D(),.Q(),.reset());
+// fliflo nombre_(.clk(),.rst(),.en(),.D(),.Q());
 
 module fliflo(
-    input logic clk, rst, en,
+    input logic clk, rst, reset,  en,
     input logic [4:0]D,
     
     output logic [2:0]Q

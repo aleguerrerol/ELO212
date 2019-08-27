@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-/* instance template
+/* instance template*/
 // shift_registers nombre_(.clk(),.rst(),.bttn(),.bit_in(),.dato(),.reset()); //rst=CPU_RESET, reset=reset forzado proveniente de calculadora para resetear registros
 
 

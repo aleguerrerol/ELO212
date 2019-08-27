@@ -40,6 +40,9 @@ module maquina(
     end
     
     always_comb begin               //SE VIENEEEEE
+    
+        reset = 0;
+        
         case (state)
             op10:   begin
                         trigger_1='b0;

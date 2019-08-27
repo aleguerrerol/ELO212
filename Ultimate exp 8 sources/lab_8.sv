@@ -189,21 +189,21 @@ endmodule
  * @param VGA_B			:Color Azul para la pantalla VGA
  */
 module calculator_screen(
-	input clk_vga,
-	input rst,
-	input mode, //bcd or dec.
-	input [2:0]op,
-	input [2:0]pos_x,
-	input [1:0]pos_y,
-	input [15:0] op1,
-	input [15:0] op2,
-	input [15:0] input_screen,
+	input logic clk_vga,
+	input logic rst,
+	input logic mode, //bcd or dec.
+	input logic [2:0]op,
+	input logic [2:0]pos_x,
+	input logic [1:0]pos_y,
+	input logic [15:0] op1,
+	input logic [15:0] op2,
+	input logic [15:0] input_screen,
 	
-	output VGA_HS,
-	output VGA_VS,
-	output [3:0] VGA_R,
-	output [3:0] VGA_G,
-	output [3:0] VGA_B
+	output logic VGA_HS,
+	output logic VGA_VS,
+	output logic [3:0] VGA_R,
+	output logic [3:0] VGA_G,
+	output logic [3:0] VGA_B
 	);
 	
 	
@@ -700,7 +700,7 @@ module calculator_screen(
                             .rst(rst), 
                             .hc_visible(hc_visible), 
                             .vc_visible(vc_visible), 
-                            .the_line("0000"), 
+                            .the_line("Hex"), 
                             .in_square(generic_bg[35]), 
                             .in_character(generic_fg[35]));
      /*Dec*/                        
@@ -716,12 +716,14 @@ module calculator_screen(
                             .the_line("Dec"), 
                             .in_square(generic_bg[36]), 
                             .in_character(generic_fg[36]));     
+    
     /*Pantalla*/                
     logic [7:0]ascii_conv_0_P, ascii_conv_1_P, ascii_conv_2_P, ascii_conv_3_P;
     logic [15:0] canal_pantalla;
+    assign canal_pantalla = input_screen;
     hex_to_ascii hex_to_p_0 (.hex_num(canal_pantalla[3:0]), .ascii_conv(ascii_conv_0_P));
     hex_to_ascii hex_to_p_1 (.hex_num(canal_pantalla[7:4]), .ascii_conv(ascii_conv_1_P)); 
-    hex_to_ascii hex_to_p_2(.hex_num(canal_pantalla[11:5]), .ascii_conv(ascii_conv_2_P)); 
+    hex_to_ascii hex_to_p_2(.hex_num(canal_pantalla[11:8]), .ascii_conv(ascii_conv_2_P)); 
     hex_to_ascii hex_to_p_3(.hex_num(canal_pantalla[15:12]), .ascii_conv(ascii_conv_3_P));  
            
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET - 25), 
@@ -736,6 +738,7 @@ module calculator_screen(
                             .the_line({ascii_conv_3_P,ascii_conv_2_P,ascii_conv_1_P, ascii_conv_0_P}), 
                             .in_square(generic_bg[37]), 
                             .in_character(generic_fg[37]));
+                            
     /*ELO212*/                   //canal pantalla -> hex to ascii -> show one line      
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*5 + GRID_X_OFFSET - 25), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*4 + GRID_Y_OFFSET + 10), 

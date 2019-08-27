@@ -33,7 +33,7 @@ module top(
     output logic [15:0]op2
     );
     logic exe;
-    logic [1:0]estado;
+    logic [2:0]estado;
     logic [15:0]dato_a;
     logic [15:0]dato_b;
     logic [2:0]operation;
@@ -44,7 +44,7 @@ module top(
 
     
     always_comb begin
-    if (val == 5'h1_0011 && btnc) //si val es exe, exe = 1
+    if ((val == 5'h1_0011) && btnc) //si val es exe, exe = 1
         exe=1;
     else
         exe=0;

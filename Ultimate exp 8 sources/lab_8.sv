@@ -1,6 +1,6 @@
 module lab_8(
 	input CLK100MHZ,
-	//input [1:0]SW,
+	input SW,
 	input BTNC,	BTNU, BTNL, BTNR, BTND, CPU_RESETN,
 	//output [15:0] LED,
 	//output CA, CB, CC, CD, CE, CF, CG,
@@ -13,14 +13,14 @@ module lab_8(
 	output [3:0] VGA_G,
 	output [3:0] VGA_B
 	);
-	logic [1:0]SW;
+	
 	logic [15:0] LED;
 	logic CA, CB, CC, CD, CE, CF, CG;
 	logic DP;
 	logic [7:0] AN;
 	
 	logic CLK82MHZ;
-	logic rst = 0; //por qué estamos forzando estos rst a 0?
+	//logic rst = 0; //por qué estamos forzando estos rst a 0?
 	logic hw_rst = ~CPU_RESETN;  // OJO: revisar que modulos nuestros tienen reset de active low.
 	
 	clk_wiz_0 inst(
@@ -36,11 +36,11 @@ module lab_8(
 	
 	//debouncer para los botones begin
 	logic d_up, d_down, d_left, d_right, d_center; //señales ya debounceadas
-	PB_Debouncer_counter Debouncer_BTNU(.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNU), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_up));
-    PB_Debouncer_counter Debouncer_BTND(.clk(CLK82MHZ), .rst(hw_rst), .PB(BTND), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_down));
-    PB_Debouncer_counter Debouncer_BTNL(.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNL), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_left));
-    PB_Debouncer_counter Debouncer_BTNR(.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNR), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_right));
-    PB_Debouncer_counter Debouncer_BTNC(.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNC), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_center));
+	PB_Debouncer_FSM  #(500000) Debouncer_BTNU (.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNU), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_up));
+    PB_Debouncer_FSM  #(500000) Debouncer_BTND (.clk(CLK82MHZ), .rst(hw_rst), .PB(BTND), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_down));
+    PB_Debouncer_FSM  #(500000) Debouncer_BTNL (.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNL), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_left));
+    PB_Debouncer_FSM  #(500000) Debouncer_BTNR (.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNR), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_right));
+    PB_Debouncer_FSM  #(500000) Debouncer_BTNC (.clk(CLK82MHZ), .rst(hw_rst), .PB(BTNC), .PB_pressed_status(), .PB_pressed_pulse(), .PB_released_pulse(d_center));
     //notar que todos tienen reset active high
 	
 	//debouncer para los botones end
@@ -58,12 +58,12 @@ module lab_8(
                             .dir_up(d_up), .dir_down(d_down), .dir_left(d_left), .dir_right(d_right),
                             .pos_x(pos_x), .pos_y(pos_y), .val(val) );
 
-    top calculadora_fsm (.rst(CPU_RESETN),.clk(CLK82MHZ), .val(val), .btnc(d_center) ,.op1(op1), .op2(op2), .op(op), .canal_pantalla(canal_pantalla));
+    top calculadora_fsm (.rst(hw_rst),.clk(CLK82MHZ), .val(val), .btnc(d_center) ,.op1(op1), .op2(op2), .op(op), .canal_pantalla(canal_pantalla));
     
-	calculator_screen(
+	calculator_screen calculator_screen_1(
 		.clk_vga(CLK82MHZ),
 		.rst(hw_rst),
-		.mode(SW[0]),
+		.mode(SW),
 		.op(op),
 		.pos_x(pos_x),
 		.pos_y(pos_y),
@@ -117,7 +117,7 @@ module hex_to_ascii(
 endmodule
 
 module op_to_ascii(
-    input [3:0] hex_num,
+    input [2:0] hex_num,
 	output logic[7:0] ascii_conv
     );
     always_comb begin
@@ -125,8 +125,9 @@ module op_to_ascii(
             4'h0:   ascii_conv="+";
             4'h1:   ascii_conv="*";
             4'h2:   ascii_conv="&";
+            4'h4:   ascii_conv="-";
             4'h5:   ascii_conv="|";
-
+            4'h7:   ascii_conv=" ";
             default:   ascii_conv=" ";
         endcase
     end 
@@ -562,14 +563,14 @@ module calculator_screen(
      /*espacio OP1*/                       
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -250), 
-					.MAX_CHARACTER_LINE(5), 
+					.MAX_CHARACTER_LINE(4), 
 					.ancho_pixel(5), 
 					.n(3)) 
                     line_espacio_OP1(	.clk(clk_vga), 
                             .rst(rst), 
                             .hc_visible(hc_visible), 
                             .vc_visible(vc_visible), 
-                            .the_line({ascii_conv_0, ascii_conv_1, ascii_conv_2, ascii_conv_3}), 
+                            .the_line({ascii_conv_3, ascii_conv_2, ascii_conv_1, ascii_conv_0}), 
                             .in_square(generic_bg[26]), 
                             .in_character(generic_fg[26]));
     /*OP2*/                        
@@ -597,14 +598,14 @@ module calculator_screen(
                            
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET - 25), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -200), 
-					.MAX_CHARACTER_LINE(5), 
+					.MAX_CHARACTER_LINE(4), 
 					.ancho_pixel(5), 
 					.n(3)) 
                     line_espacio_OP2(	.clk(clk_vga), 
                             .rst(rst), 
                             .hc_visible(hc_visible), 
                             .vc_visible(vc_visible), 
-                            .the_line({ascii_conv_0_B,ascii_conv_1_B,ascii_conv_2_B,ascii_conv_3_B}), 
+                            .the_line({ascii_conv_3_B,ascii_conv_2_B,ascii_conv_1_B,ascii_conv_0_B}), 
                             .in_square(generic_bg[28]), 
                             .in_character(generic_fg[28]));
     /*OP*/                        
@@ -652,7 +653,7 @@ module calculator_screen(
                             .in_square(generic_bg[31]), 
                             .in_character(generic_fg[31]));
     /*result 2*/                        
-    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET +500), 
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET + 50),  
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -75), 
 					.MAX_CHARACTER_LINE(4), 
 					.ancho_pixel(5), 
@@ -678,7 +679,7 @@ module calculator_screen(
                             .in_square(generic_bg[33]), 
                             .in_character(generic_fg[33]));
     /*result 4*/                        
-    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET +50), 
+    show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*4 + GRID_X_OFFSET + 50), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -75), 
 					.MAX_CHARACTER_LINE(4), 
 					.ancho_pixel(5), 
@@ -693,7 +694,7 @@ module calculator_screen(
      /*Hex*/                        
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*0 + GRID_X_OFFSET -75), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -225), 
-					.MAX_CHARACTER_LINE(6), 
+					.MAX_CHARACTER_LINE(3), 
 					.ancho_pixel(5), 
 					.n(3)) 
                     line_hex(	.clk(clk_vga), 
@@ -717,7 +718,7 @@ module calculator_screen(
                             .in_square(generic_bg[36]), 
                             .in_character(generic_fg[36]));     
     
-    /*Pantalla*/                
+    /* espacio Pantalla*/                
     logic [7:0]ascii_conv_0_P, ascii_conv_1_P, ascii_conv_2_P, ascii_conv_3_P;
     logic [15:0] canal_pantalla;
     assign canal_pantalla = input_screen;
@@ -728,7 +729,7 @@ module calculator_screen(
            
     show_one_line #(.LINE_X_LOCATION(FIRST_SQRT_X + 100*1 + GRID_X_OFFSET - 25), 
 					.LINE_Y_LOCATION(FIRST_SQRT_Y + 100*0 + GRID_Y_OFFSET -200), 
-					.MAX_CHARACTER_LINE(5), 
+					.MAX_CHARACTER_LINE(4), 
 					.ancho_pixel(5), 
 					.n(3)) 
                     line_pantalla(	.clk(clk_vga), 

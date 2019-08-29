@@ -25,17 +25,17 @@ module ALU #(parameter largo=16)(
     input logic [largo-1:0]A, [largo-1:0]B, [2:0]OP,      //OP 4 BITS
     //input logic estado,
     
-    output logic [largo-1:0]result, //tiene 1 bit adicional para detección de errores
-    output logic error                     //indica CARRY OUT
+    output logic [largo-1:0]result //tiene 1 bit adicional para detección de errores
+    //output logic error                     //si quisieramos agregarle flags de error
  );
   
  always_comb begin        
     case (OP)
             'd0:    result= A + B;                
             'd1:    result= A * B;
-            'd2:    result= A && B;
+            'd2:    result= A & B;
             'd4:    result= A - B;
-            'd5:    result= A || B;
+            'd5:    result= A | B;
         default:    result= 'b0;
     endcase
  end

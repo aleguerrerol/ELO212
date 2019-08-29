@@ -19,19 +19,28 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// maquina nombre_(.clk(),.rst(),.exe(),.button(),trigger_1(),.trigger_2(),.trigger_op(),.estado(),.reset_a_reg());
+    /*
+    val == 5'b1_0011 //exe
+    val = 5'b1_0111; //CLR
+    val = 5'b1_0110; //CE (undo)
+    */
+
+
+// maquina nombre_(.clk(),.rst(), .val(),.button(),trigger_1(),.trigger_2(),.trigger_op(),.estado(),.clear());
 
 module maquina(
-    input logic clk, rst, exe,
+    input logic clk, rst,
     input logic button,
-    output logic trigger_1, trigger_2, trigger_op, reset_a_reg, //reset_a_reg resetea los bancos e registros
-    output logic [2:0]estado // javier: cambie el numero de estados posibles para agregar estado "4" default en el display pricipal igual a cero.
+    input logic [4:0] val,
+    output logic trigger_1, trigger_2, trigger_op, clear, //clear resetea los bancos e registros
+    output logic [1:0]estado, //
+    output logic c1,c2 
     );
     logic restriccion; //se pone en 1 y la maquina no permite usarla
     enum logic [4:0] {op10,send10,op11,send11,op12,send12,op13,send13,wait1,op20,send20,op21,send21,op22,
-                        send22,op23,send23,wait2,operation,casi,casi_0,show_result,reset_calc} state, next_state;
+                        send22,op23,send23,wait2,operation,send_op,casi,casi_1,show_result,reset_calc} state, next_state;
     logic reset;
-    
+    logic c1_int,c2_int; //int de interno
     always_ff @(posedge clk, posedge rst) begin
         if (reset || rst) begin
             state<=op10;
@@ -40,7 +49,9 @@ module maquina(
     end
     
     always_comb begin               //SE VIENEEEEE
-    
+        
+        c1_int = 0;
+        c2_int = 0;
         reset = 0;
         
         case (state)
@@ -49,10 +60,12 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d0;
-                        if(exe) begin
+                        reset = 0;
+                         
+                        if((val == 5'b1_0011) && button) begin //exe
                             next_state=op20;
                         end
-                        else if(button)begin
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send10;
                         end
                         else next_state=state;
@@ -70,13 +83,19 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d0;
-                        if(exe) begin
+                        if((val == 5'b1_0011) && button) begin //EXE
                             next_state=op20;
                         end
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send11;
                         end
-                        else next_state=state;
+                        
+                        else next_state=state;   
                     end
             send11: begin
                         trigger_1='b1;
@@ -91,10 +110,15 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d0; 
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=op20;
                         end
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send12;
                         end
                         else next_state=state;   
@@ -112,10 +136,15 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d0; 
-                        if(exe) begin
+                         if((val == 5'b1_0011) && button) begin //EXE
                             next_state=op20;
                         end
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send13;
                         end
                         else next_state=state;
@@ -133,9 +162,14 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d0;
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=op20;
                         end
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
                         else next_state=state;
                     end
                     
@@ -143,11 +177,17 @@ module maquina(
                         trigger_1='b0;
                         trigger_2='b0;
                         trigger_op='b0;
+                        c1_int='b1;
                         estado='d1;
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=operation;
                         end
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send20;
                         end
                         else next_state=state;
@@ -165,10 +205,15 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d1; 
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=operation;
                         end
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send21;
                         end
                         else next_state=state;
@@ -186,10 +231,15 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d1; 
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=operation;
                         end
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send22;
                         end
                         else next_state=state;   
@@ -208,12 +258,18 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d1;
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=operation;
                         end 
-                        else if(button)begin
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                        else if(button && (val[4] == 0))begin //val[4] == 0 cuando se aprieta un numero
                             next_state=send23;
                         end
+                        
                         else next_state=state;
                     end
             send23: begin
@@ -230,28 +286,40 @@ module maquina(
                         trigger_2='b0;
                         trigger_op='b0;
                         estado='d1;
-                        if(exe) begin
+                          if((val == 5'b1_0011) && button) begin //EXE
                             next_state=operation;
                         end
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
                         else next_state=state;                        
                     end
                     
             operation:  begin                   
                             trigger_1='b0;
                             trigger_2='b0;
-                            trigger_op='b0; 
-                            estado='d2;                
-                            if(button) begin
-                            next_state=casi_0;
+                            trigger_op='b0;
+                            c2_int = 'b1; 
+                            estado ='d3; //no mostrar nada    
+                            
+                            if((val == 5'b1_0111) && button )begin // CLR
+                                next_state=reset_calc;
                             end
+                                    
+                            else if(button && (val[4] == 1) /* && (val != 5'b1_0011)*/ ) begin //val[4] == 1 cuando se aprieta un operador
+                            next_state=send_op;
+                            end
+                            
                             else next_state=state;  
                         end
                         
-            casi_0: begin                       //estado transitorio creado para resolver bug al almacenar operacion.
+            send_op: begin                       //estado transitorio creado para resolver bug al almacenar operacion.
                         trigger_1='b0;
                         trigger_2='b0;
                         trigger_op='b1; 
-                        estado='d2;
+                        estado='d3;
                         next_state=casi;
                    end
                            
@@ -259,10 +327,35 @@ module maquina(
                         trigger_1='b0;
                         trigger_2='b0;
                         trigger_op='b0;
-                        estado='d2;
-                        if(exe) begin
+                        estado='d3;
+                        if((val == 5'b1_0011) && button) begin //exe
+                            next_state=casi_1;
+                        end
+                        
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                         
+                        else next_state=state;
+                    end
+            
+            casi_1:   begin                       //estado para mostrar resultado 
+                        trigger_1='b0;
+                        trigger_2='b0;
+                        trigger_op='b0;
+                        estado='d3;
+                        if((val == 5'b1_0011) && button) begin //exe
                             next_state=show_result;
-                        end 
+                        end
+                        
+                        
+                        else if((val == 5'b1_0111) && button )begin // CLR
+                            next_state=reset_calc;
+                        end
+                        
+                         
                         else next_state=state;
                     end
             
@@ -270,19 +363,25 @@ module maquina(
                                 trigger_1='b0;
                                 trigger_2='b0;
                                 trigger_op='b0;
-                                estado='d3;
-                                if(exe) begin
+                                estado='d2;
+                                
+                                 if((val == 5'b1_0011) && button) begin //exe
                                     next_state=reset_calc;
                                 end
+                                
+                                else if((val == 5'b1_0111) && button )begin // CLR
+                                    next_state=reset_calc;
+                                end
+                        
                                 else next_state=state;    
                             end
                             
             reset_calc:      begin
-                                reset=1;
+                                reset=0;
                                 trigger_1='b0;
                                 trigger_2='b0;
                                 trigger_op='b0;
-                                estado='d4;
+                                estado='d3;
                                 next_state=op10;
                             end
             default: begin
@@ -290,11 +389,15 @@ module maquina(
                                 trigger_1='b0;
                                 trigger_2='b0;
                                 trigger_op='b0;
-                                estado='d4;               
+                                c1_int = 'b0;
+                                c2_int = 'b0;
+                                estado='d3;               
                                 next_state=state;
                      end
                     
         endcase
     end
-    assign reset_a_reg=reset; 
+    assign clear=reset;
+    assign c1 = c1_int;
+    assign c2 = c2_int; 
 endmodule

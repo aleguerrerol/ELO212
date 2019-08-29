@@ -19,11 +19,11 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 /* instance template*/
-// shift_registers nombre_(.clk(),.rst(),.bttn(),.bit_in(),.dato(),.reset()); //rst=CPU_RESET, reset=reset forzado proveniente de calculadora para resetear registros
+// shift_registers nombre_(.clk(),.rst(),.bttn(),.bit_in(),.dato(),.clear()); //rst=CPU_RESET, reset=reset forzado proveniente de calculadora para resetear registros
 
 
 module shift_registers(
-    input logic clk, rst, bttn,reset,
+    input logic clk, rst, bttn, clear,
     input logic [4:0]bit_in,
     
     output logic [15:0]dato
@@ -31,8 +31,8 @@ module shift_registers(
 
     logic [15:0]dato_aux;
     always_ff @(posedge(clk)) begin
-        if (rst || reset) 
-            dato_aux <= 0;        
+        if (rst || clear) 
+            dato_aux <= 15'b0;        
         else if (bttn) 
             dato_aux <= {dato_aux[11:0], bit_in[3:0]};        
         else

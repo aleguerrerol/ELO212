@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 24.07.2019 18:05:25
+// Create Date: 29.08.2019 12:49:12
 // Design Name: 
 // Module Name: register_synch_reset_load_nbit
 // Project Name: 
@@ -15,22 +15,24 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments: Del profe, adaptado para ser un banco de registros de n bits en lugar de 8 y resetee con active high
-// Sacado de https://github.com/gcarvajalb/ELO212-reference-modules/blob/master/PushButton-debouncer/project_1.srcs/sources_1/new/debouncer_FSM.sv
+// Additional Comments:
+// 
 //////////////////////////////////////////////////////////////////////////////////
-
-
+/* inst
+register_synch_reset_load_nbit banco_op_1 (.D(), .clk(), .rst(), .load(), .Q(), .clear());
+*/
 module register_synch_reset_load_nbit
-    #(parameter n=8)
+    #(parameter n=16)
     (
     input [n-1:0] D,
     input clk,
     input rst,
     input load,
+    input clear,
     output reg[n-1:0] Q
     );
     always @(posedge clk) begin
-        if (rst) begin //reset de active high
+        if (rst || clear) begin //reset de active high
             Q <= 'd0;
         end
         else if (load) begin
@@ -38,5 +40,3 @@ module register_synch_reset_load_nbit
         end
     end
 endmodule
-
-//-----------

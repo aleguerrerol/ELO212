@@ -17,7 +17,6 @@
 // Revision 0.01 - File Created
 // Additional Comments:
 // 
-// todos los colores 100% saturados tiran problema
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -36,20 +35,20 @@ module Dithering(
     assign r_channel = pixel_in[23:16];
     assign g_channel = pixel_in[15:8];
     assign b_channel = pixel_in[7:0];
-
-	always_comb begin
-		if ((r_channel[3]) && (r_channel[7:4] != 4'f))
-			r_dither = {r_channel[7:4]+4'd1, 4'b0};
-		else r_dither = r_channel;
-		
-		if ((g_channel[3]) && (g_channel[7:4] != 4'f))
-			g_dither = {g_channel[7:4]+4'd1, 4'b0};
-		else g_dither = g_channel;
-		
-		if ((b_channel[3]) && (b_channel[7:4] != 4'f))
-			b_dither = {b_channel[7:4]+4'd1, 4'b0};
-		else b_dither = b_channel;
-	end
+    
+    always_comb begin
+        if (r_channel[3])
+             r_dither = {r_channel[7:4]+1'b1, 4'b0};
+        else r_dither = {r_channel[7:4], 4'b0};
+        
+        if (g_channel[3])
+             g_dither = {g_channel[7:4]+1'b1, 4'b0};
+        else g_dither = {g_channel[7:4], 4'b0};
+        
+        if (b_channel[3])
+             b_dither = {b_channel[7:4]+1'b1, 4'b0};
+        else b_dither = {b_channel[7:4], 4'b0};
+    end
     
     assign dithering = {r_dither,g_dither,b_dither};
 endmodule

@@ -33,7 +33,7 @@
 module coordinate_to_address(
     input logic [10:0]x, //x coordinate
     input logic [10:0]y, //y coordinate
-    output logic [9:0]add[0:8]
+    output logic [17:0]add[0:8]
     );
     
     always_comb begin
